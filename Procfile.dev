@@ -1,0 +1,2 @@
+postgres: postgres -D $HOME/.asdf/installs/postgres/12.9/data
+web: bundle exec rails server --port 3000 --binding 0.0.0.0
