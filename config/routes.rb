@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "pages#home"
   get 'pages/home'
 
+  # Auth Domain
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -15,4 +16,12 @@ Rails.application.routes.draw do
   post 'verify_otp', to: 'users#sessions/verify_otp'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
+
+  # Blog Domain
+  resources :posts do
+    member do
+      post :dup
+      get :new_from_copy
+    end
+  end
 end
