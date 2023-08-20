@@ -22,3 +22,12 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## References
+
+- [Example of componentized Rails app](https://github.com/rafaelfranca/lego)
+
+
+## Steps to create new domain
+
+`rails plugin new domains/auth --mountable --skip-git`

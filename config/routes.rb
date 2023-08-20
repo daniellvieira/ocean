@@ -17,11 +17,5 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
 
-  # Blog Domain
-  resources :posts do
-    member do
-      post :dup
-      get :new_from_copy
-    end
-  end
+  mount Blog::Engine => "/blog"
 end
