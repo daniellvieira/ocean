@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_24_232248) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_27_144825) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "event_store_events", force: :cascade do |t|
@@ -44,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_232248) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "log_data"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

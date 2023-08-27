@@ -4,7 +4,7 @@ module Blog
 
     # GET /posts or /posts.json
     def index
-      @posts = Post.all
+      @posts = Post.all.order(id: :desc)
     end
 
     # GET /posts/1 or /posts/1.json
@@ -13,7 +13,10 @@ module Blog
 
     # GET /posts/new
     def new
-      @post = Post.new
+      @post = Post.new(
+        title: Faker::Lorem.word,
+        body: Faker::Lorem.paragraph
+      )
     end
 
     # GET /posts/1/edit
@@ -23,6 +26,7 @@ module Blog
     # POST /posts or /posts.json
     def create
       @post = Post.new(post_params)
+      @post.user = current_user
 
       respond_to do |format|
         if @post.save
@@ -80,14 +84,15 @@ module Blog
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_post
-        @post = Post.find(params[:id])
-      end
 
-      # Only allow a list of trusted parameters through.
-      def post_params
-        params.require(:post).permit(:title, :body, :user_id)
+    # Use callbacks to share common setup or constraints between actions.
+    def set_post
+      @post = Post.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def post_params
+      params.require(:post).permit(:title, :body)
       end
   end
 end

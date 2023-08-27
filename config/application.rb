@@ -18,5 +18,9 @@ module Ocean
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
+
+    # NOTE: Logidze uses DB functions and triggers,
+    # hence you need to use SQL format for a schema dump
+    config.active_record.schema_format = :sql
   end
 end

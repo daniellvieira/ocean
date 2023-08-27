@@ -55,9 +55,16 @@ gem "devise-two-factor", "~> 5.0"
 # https://github.com/whomwah/rqrcode
 gem "rqrcode", "~> 2.0"
 
+# https://github.com/palkan/logidze
+# NOTE: to see the log, you can
+gem "logidze", "~> 1.1"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+
+  # https://github.com/faker-ruby/faker
+  gem 'faker'
 end
 
 group :development do
@@ -69,9 +76,6 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-
-  # https://github.com/faker-ruby/faker
-  gem 'faker'
 end
 
 group :test do

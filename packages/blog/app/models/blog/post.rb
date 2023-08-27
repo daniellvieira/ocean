@@ -2,6 +2,9 @@ module Blog
   class Post < ::ApplicationRecord
     self.table_name = 'posts'
 
-    # belongs_to :user, class_name: 'Auth::User'
+    # Versioning
+    has_logidze
+
+    belongs_to :user, class_name: '::User'
   end
 end
