@@ -1,0 +1,16 @@
+<div>
+  <p>
+    <strong>Changes:</strong>
+    <%= version.data['c'] %>
+  </p>
+
+  <p>
+    <strong>Version ID:</strong>
+    <%= version.data['v'] %>
+  </p>
+
+  <p>
+    <strong>Time:</strong>
+    <%=l Time.at(version.data['ts'].to_s[0..9].to_i).to_datetime, format: :long %>
+  </p>
+</div>

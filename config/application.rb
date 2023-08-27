@@ -21,6 +21,7 @@ module Ocean
 
     # NOTE: Logidze uses DB functions and triggers,
     # hence you need to use SQL format for a schema dump
+    # https://blog.appsignal.com/2020/01/15/the-pros-and-cons-of-using-structure-sql-in-your-ruby-on-rails-application.html
     config.active_record.schema_format = :sql
   end
 end

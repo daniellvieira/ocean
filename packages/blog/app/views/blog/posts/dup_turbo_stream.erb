@@ -1,5 +1,6 @@
 <%= turbo_stream.append(
       'posts',
       partial: 'posts/indexed_post',
-      locals: { post: @new_post })
+      locals: { post: @new_post }
+    )
 %>

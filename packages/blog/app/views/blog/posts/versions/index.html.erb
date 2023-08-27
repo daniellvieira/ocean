@@ -1,0 +1,16 @@
+<h1>Post History</h1>
+
+
+<div id="posts">
+  <% @versions.each do |version| %>
+    <%= render 'blog/posts/versions/version', version: version %>
+    <hr />
+  <% end %>
+</div>
+
+<br>
+
+<div>
+  <%= link_to "Show this post", @post %> |
+  <%= link_to "Back to posts", posts_path %>
+</div>
