@@ -80,3 +80,4 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+gem "rails_event_store", "~> 2.11.0"
