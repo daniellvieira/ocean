@@ -1,21 +1,24 @@
-class Diary::PostsController < ApplicationController
+class Diary::Api::V1::PostsController < ::ApplicationController
   before_action :set_post, only: %i[show update destroy]
 
   # GET /diary/posts
   def index
     @posts = Diary::Post.order(created_at: :desc)
+
+    render json: @posts
   end
 
   # GET /diary/posts/1
   def show
+    render json: @post
   end
 
   # POST /diary/posts
   def create
-    @post = Diary::Post.new(post_params)
+    @post = Post.new(post_params)
 
     if @post.save
-      render :show, status: :created, location: @post
+      render json: @post, status: :created, location: @post
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -24,7 +27,7 @@ class Diary::PostsController < ApplicationController
   # PATCH/PUT /diary/posts/1
   def update
     if @post.update(post_params)
-      render :show, status: :ok, location: @post
+      render json: @post
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -33,18 +36,17 @@ class Diary::PostsController < ApplicationController
   # DELETE /diary/posts/1
   def destroy
     @post.destroy
-
-    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Diary::Post.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :body)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
 end

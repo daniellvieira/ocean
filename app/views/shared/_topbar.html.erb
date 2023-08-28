@@ -1,6 +1,7 @@
 <% if user_signed_in? %>
   <menu>
     <li><%= link_to 'Home', main_app.pages_home_path %></li>
-    <li><%= link_to 'Blog', blog.posts_path %></li>
+    <li><%= link_to 'Blog - Posts', blog.posts_path %></li>
+    <li><%= link_to 'Diary - Posts ( JSON )', diary.api_v1_posts_path %></li>
   </menu>
 <% end %>
