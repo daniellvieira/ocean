@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @diary_post %>
+
+<div>
+  <%= link_to "Edit this post", edit_diary_post_path(@diary_post) %> |
+  <%= link_to "Back to posts", diary_posts_path %>
+
+  <%= button_to "Destroy this post", @diary_post, method: :delete %>
+</div>

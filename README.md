@@ -31,3 +31,7 @@ Things you may want to cover:
 ## Steps to create new domain
 
 `rails plugin new domains/auth --mountable --skip-git`
+
+## Next steps
+
+- [N+1 Query And Performance Optimizations](https://www.youtube.com/watch?v=v2ehGvveYP0&ab_channel=Deanin)

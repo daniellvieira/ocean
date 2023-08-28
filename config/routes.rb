@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount RailsEventStore::Browser => '/res' if Rails.env.development?
   root "pages#home"
   get 'pages/home'
 
@@ -18,5 +17,8 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
 
+  mount RailsEventStore::Browser => '/res' if Rails.env.development?
+
   mount Blog::Engine => "/blog"
+  mount Diary::Engine => "/diary"
 end

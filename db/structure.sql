@@ -427,6 +427,38 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: diary_posts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.diary_posts (
+    id bigint NOT NULL,
+    title character varying,
+    body text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: diary_posts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.diary_posts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: diary_posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.diary_posts_id_seq OWNED BY public.diary_posts.id;
+
+
+--
 -- Name: event_store_events; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -574,6 +606,13 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
+-- Name: diary_posts id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.diary_posts ALTER COLUMN id SET DEFAULT nextval('public.diary_posts_id_seq'::regclass);
+
+
+--
 -- Name: event_store_events id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -607,6 +646,14 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: diary_posts diary_posts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.diary_posts
+    ADD CONSTRAINT diary_posts_pkey PRIMARY KEY (id);
 
 
 --
@@ -755,6 +802,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230827144737'),
 ('20230827144738'),
 ('20230827144825'),
-('20230827153042');
+('20230827153042'),
+('20230828225636');
 
 

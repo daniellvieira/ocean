@@ -7,6 +7,7 @@ require "rails/all"
 Bundler.require(*Rails.groups)
 
 require_relative "../packages/blog/lib/blog"
+require_relative "../packages/diary/lib/diary"
 module Ocean
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.

@@ -59,6 +59,10 @@ gem "rqrcode", "~> 2.0"
 # NOTE: to see the log, you can
 gem "logidze", "~> 1.1"
 
+# Rack Middleware for handling Cross-Origin Resource Sharing (CORS)
+# https://github.com/cyu/rack-cors
+gem 'rack-cors'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
