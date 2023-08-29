@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Auth::UsersController < ApplicationController
   before_action :authenticate_user!, except: %i[show_otp verify_otp]
 
   def disable_otp
@@ -6,10 +6,10 @@ class UsersController < ApplicationController
     if current_user.validate_and_consume_otp!(params[:otp_attempt])
       current_user.otp_required_for_login = false
       current_user.save!
-      redirect_to root_path, notice: 'Two-factor authentication disabled successfully.'
+      redirect_to main_app.root_path, notice: 'Two-factor authentication disabled successfully.'
     else
       flash[:alert] = 'Invalid OTP code.'
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: main_app.root_path)
     end
   end
 
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if user.validate_and_consume_otp!(params[:otp_attempt])
       # OTP is correct. Log the user in
       sign_in(:user, user)
-      redirect_to root_path, notice: 'Logged in successfully!'
+      redirect_to main_app.root_path, notice: 'Logged in successfully!'
     else
       flash[:alert] = 'Invalid OTP code.'
       # Send them back to the sign in page, but don't show them the OTP entry page again.

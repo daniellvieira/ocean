@@ -69,6 +69,9 @@ group :development, :test do
 
   # https://github.com/faker-ruby/faker
   gem 'faker'
+
+  # https://github.com/pry/pry
+  gem 'pry', '~> 0.14.2'
 end
 
 group :development do

@@ -4,7 +4,7 @@ Warden::Strategies.add(:password_authenticatable) do
   end
 
   def authenticate!
-    resource = User.find_by(email: params['user']['email'])
+    resource = Auth::User.find_by(email: params['user']['email'])
     if resource && resource.valid_password?(params['user']['password'])
       success!(resource)
     else

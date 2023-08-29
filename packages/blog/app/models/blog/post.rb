@@ -5,6 +5,6 @@ module Blog
     # Versioning
     has_logidze
 
-    belongs_to :user, class_name: '::User'
+    belongs_to :user, class_name: 'Auth::User'
   end
 end

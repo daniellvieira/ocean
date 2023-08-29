@@ -1,2 +1,4 @@
-class Diary::Post < ApplicationRecord
+module Diary
+  class Post < ApplicationRecord
+  end
 end

@@ -6,6 +6,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require_relative "../packages/auth/lib/auth"
 require_relative "../packages/blog/lib/blog"
 require_relative "../packages/diary/lib/diary"
 module Ocean
