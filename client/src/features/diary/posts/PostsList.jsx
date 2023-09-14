@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { API_URL } from "../../../constants.js";
+import {Link} from "react-router-dom";
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
