@@ -1,52 +1,54 @@
-class Diary::Api::V1::PostsController < ::ApplicationController
-  before_action :set_post, only: %i[show update destroy]
+module Diary
+  class Api::V1::PostsController < ::ApplicationController
+    before_action :set_post, only: %i[show update destroy]
 
-  # GET /diary/posts
-  def index
-    @posts = Diary::Post.order(created_at: :desc)
+    # GET /diary/posts
+    def index
+      @posts = Post.order(created_at: :desc)
 
-    render json: @posts
-  end
-
-  # GET /diary/posts/1
-  def show
-    render json: @post
-  end
-
-  # POST /diary/posts
-  def create
-    @post = Post.new(post_params)
-
-    if @post.save
-      render json: @post, status: :created, location: @post
-    else
-      render json: @post.errors, status: :unprocessable_entity
+      render json: @posts
     end
-  end
 
-  # PATCH/PUT /diary/posts/1
-  def update
-    if @post.update(post_params)
+    # GET /diary/posts/1
+    def show
       render json: @post
-    else
-      render json: @post.errors, status: :unprocessable_entity
     end
-  end
 
-  # DELETE /diary/posts/1
-  def destroy
-    @post.destroy
-  end
+    # POST /diary/posts
+    def create
+      @post = Post.new(post_params)
 
-  private
+      if @post.save
+        render json: @post, status: :created, location: @post
+      else
+        render json: @post.errors, status: :unprocessable_entity
+      end
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_post
-    @post = Post.find(params[:id])
-  end
+    # PATCH/PUT /diary/posts/1
+    def update
+      if @post.update(post_params)
+        render json: @post
+      else
+        render json: @post.errors, status: :unprocessable_entity
+      end
+    end
 
-  # Only allow a list of trusted parameters through.
-  def post_params
-    params.require(:post).permit(:title, :body)
+    # DELETE /diary/posts/1
+    def destroy
+      @post.destroy
+    end
+
+    private
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_post
+      @post = Post.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def post_params
+      params.require(:post).permit(:title, :body)
+    end
   end
 end
