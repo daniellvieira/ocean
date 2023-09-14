@@ -1,5 +1,5 @@
 module Diary
-  class Api::V1::PostsController < ::ApplicationController
+  class Api::V1::PostsController < Api::ApplicationController
     before_action :set_post, only: %i[show update destroy]
 
     # GET /diary/posts
@@ -19,7 +19,7 @@ module Diary
       @post = Post.new(post_params)
 
       if @post.save
-        render json: @post, status: :created, location: @post
+        render json: @post, status: :created, location: api_v1_post_url(@post)
       else
         render json: @post.errors, status: :unprocessable_entity
       end
