@@ -1,12 +1,12 @@
 import {useState, useEffect, useCallback} from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import {API_URL} from "../../../constants.js";
 
 const PostDetails = () => {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null)
-  const { id }= useParams();
+  const { id } = useParams();
 
   const fetchData = useCallback(async () => {
     const data = await fetch(`${API_URL}/posts/${id}`);
@@ -31,6 +31,10 @@ const PostDetails = () => {
       <div>
         <h2>{post.title}</h2>
         <p>{post.body}</p>
+        <Link to={`/diary/posts/${post.id}/edit`} className="edit-button">
+          Edit
+        </Link>
+        <br/>
         <Link to="/">Back to Posts</Link>
       </div>
     )
