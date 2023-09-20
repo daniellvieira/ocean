@@ -43,6 +43,8 @@ const PostsList = () => {
             </Link>
           </h2>
           <div className="post-links">
+            <Link to={`/diary/posts/${post.id}/edit`}>Edit</Link>
+            {" | "}
             <button onClick={() => deletePost(post.id)}>Delete</button>
           </div>
         </div>

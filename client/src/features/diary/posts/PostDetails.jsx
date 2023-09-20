@@ -45,11 +45,10 @@ const PostDetails = () => {
       <div>
         <h2>{post.title}</h2>
         <p>{post.body}</p>
+
         <Link to="/">Back to Posts</Link>
         {" | "}
-        <Link to={`/diary/posts/${post.id}/edit`} className="edit-button">
-          Edit
-        </Link>
+        <Link to={`/diary/posts/${post.id}/edit`}>Edit</Link>
         {" | "}
         <button onClick={() => deletePost()}>Delete</button>
       </div>
