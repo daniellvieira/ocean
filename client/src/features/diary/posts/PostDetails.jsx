@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useCallback} from "react";
-import {useParams, Link, useNavigate} from "react-router-dom";
-import {API_URL} from "../../../constants.js";
+import React, { useState, useEffect, useCallback } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { fetchPost, deletePost as deletePostService } from "../../../services/diary/postService.js";
 
 const PostDetails = () => {
   const { id } = useParams();
@@ -11,10 +11,8 @@ const PostDetails = () => {
   const [error, setError] = useState(null)
 
   const fetchData = useCallback(async () => {
-    const data = await fetch(`${API_URL}/posts/${id}`);
-    const json = await data.json();
-
-    setPost(json);
+    const data = await fetchPost(id);
+    setPost(data);
   }, [])
 
   useEffect(() => {
@@ -27,14 +25,11 @@ const PostDetails = () => {
   }, [id]);
 
   const deletePost = async () => {
-    const response = await fetch(`${API_URL}/posts/${id}`, {
-      method: "DELETE",
-    })
-
-    if (response.ok) {
+    try {
+      await deletePostService(id);
       navigate(`/`);
-    } else {
-      console.error("An error occurred.");
+    } catch (e) {
+      console.error("Failed to delete the post: ", e);
     }
   }
 

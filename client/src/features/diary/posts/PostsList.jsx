@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { API_URL } from "../../../constants.js";
-import {Link} from "react-router-dom";
+import { fetchAllPosts, deletePost as deletePostService } from "../../../services/diary/postService.js";
+import { Link } from "react-router-dom";
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
@@ -9,10 +9,8 @@ const PostsList = () => {
   // fetch posts from the API V1
 
   const fetchData = useCallback(async () => {
-    const data = await fetch(`${API_URL}/posts`);
-    const json = await data.json();
-
-    setPosts(json);
+    const data = await fetchAllPosts();
+    setPosts(data);
   }, [])
 
   useEffect(() => {
@@ -22,14 +20,11 @@ const PostsList = () => {
   }, [fetchData])
 
   const deletePost = async (id) => {
-    const response = await fetch(`${API_URL}/posts/${id}`, {
-      method: "DELETE",
-    })
-
-    if (response.ok) {
+    try {
+      await deletePostService(id);
       setPosts(posts.filter((post) => post.id !== id));
-    } else {
-      console.error("An error occurred.");
+    } catch (e) {
+      console.error("Failed to delete the post: ", e);
     }
   }
 
