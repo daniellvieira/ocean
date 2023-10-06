@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { API_URL } from "../../../constants";
+import { updatePost, fetchPost } from "../../../services/diary/postService.js";
 
 const EditPostForm = () => {
   const { id } = useParams();
@@ -11,10 +11,8 @@ const EditPostForm = () => {
   const [error, setError] = useState(null)
 
   const fetchData = useCallback(async () => {
-    const data = await fetch(`${API_URL}/posts/${id}`);
-    const json = await data.json();
-
-    setPost(json);
+    const data = await fetchPost(id);
+    setPost(data);
   }, [])
 
   useEffect(() => {
@@ -29,19 +27,11 @@ const EditPostForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch(`${API_URL}/posts/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(post)
-    })
-
-    if (response.ok) {
-      const { id } = await response.json();
-      navigate(`/diary/posts/${id}`);
-    } else {
-      console.log("An error occurred.");
+    try {
+      const data = await updatePost(id, post);
+      navigate(`/diary/posts/${data.id}`);
+    } catch (error) {
+      console.log("Failed to edit post: ", error);
     }
   }
 
@@ -75,7 +65,7 @@ const EditPostForm = () => {
             />
           </div>
           <div>
-            <button type="submit">Create</button>
+            <button type="submit">Update</button>
           </div>
         </form>
       </div>
