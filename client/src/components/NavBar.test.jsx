@@ -2,7 +2,7 @@ import {render, screen} from "@testing-library/react";
 import NavBar from "./NavBar.jsx";
 import { MemoryRouter } from "react-router-dom";
 
-describe("Navbar component", () => {
+describe("NavBar component", () => {
   const renderNavBar = () => {
     render(<NavBar />, { wrapper: MemoryRouter });
   }
