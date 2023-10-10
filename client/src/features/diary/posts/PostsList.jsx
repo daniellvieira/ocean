@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { fetchAllPosts, deletePost } from "../../../services/diary/postService.js";
 import { Link } from "react-router-dom";
 
