@@ -64,7 +64,7 @@ module Blog
 
     def dup
       @new_post = @post.dup
-      @new_post.title = @new_post.title + " (copy)(#{Time.now.strftime('%Y-%m-%d %H:%H:%S')})"
+      @new_post.title = @new_post.title + " (copy)(#{Time.now.strftime('%Y-%m-%d %H:%M:%S')})"
 
       respond_to do |format|
         if @new_post.save
